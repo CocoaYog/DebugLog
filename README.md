@@ -4,8 +4,9 @@
 通过宏定义，自定义控制台的log格式。将这个段代码放入.pch文件中，即可全局使用。
 ## 主要代码
 
-```iOS
-NSLog((@"\n[文件名:%s]\n" "[函数名:%s]\n" "[行号:%d] \n" fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);
+```Object-C
+#ifdef DEBUG
+# define DebugLog(fmt, ...) NSLog((@"\n[文件名:%s]\n" "[函数名:%s]\n" "[行号:%d] \n" fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
 # define DebugLog(...);
 #endif
